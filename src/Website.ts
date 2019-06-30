@@ -1,4 +1,5 @@
 import * as request from "request-promise";
+import { promises } from "fs";
 
 export class Website {
 
@@ -6,7 +7,7 @@ export class Website {
     constructor(public url: string, public formData: object, public headers: object) {
     }
 
-    getData(): void {
+    async GetData(): Promise<object[]> {
 
         let options = {
             url: this.url,
@@ -14,10 +15,8 @@ export class Website {
             json: true
         }
 
-        request(options)
-            .then((response) => {
-                console.log(response);
-            })
+        const topTen = await request(options);
 
+        return topTen;
     }
 }

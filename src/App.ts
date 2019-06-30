@@ -2,12 +2,12 @@
 
 import { Website } from "./Website";
 
-let myWebsite: Website = new Website("https://threepointsix.azurewebsites.net/api/post", 
-[{ key: "Message", value: "nice" }, { key: "Authors", value: ["BigMemeDaddy"] }], [{ key: "Authors", value: ["BigMemeDaddy"] }]);
+let myWebsite: Website = new Website("https://threepointsix.azurewebsites.net/api/post", "Sample Employer",
+    [{ key: "Message", value: "nice" }, { key: "Authors", value: ["BigMemeDaddy"] }], [{ key: "Authors", value: ["BigMemeDaddy"] }]);
 
 myWebsite.GetData()
-.then((response) => myWebsite);
+    .then((response) => myWebsite.ScrapeData(response));
 
+// Second call for debugging
 myWebsite.GetData()
-.then((response) => console.log(response));
-
+    .then((response) => console.log(response));

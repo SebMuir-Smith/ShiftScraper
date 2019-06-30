@@ -1,22 +1,32 @@
 import * as request from "request-promise";
-import { promises } from "fs";
+
+///<reference path='Shift.ts'/>
 
 export class Website {
 
+    shifts: Shift[] = [];
+
     requestType: string = "GET";
-    constructor(public url: string, public formData: object, public headers: object) {
+    constructor(public url: string, public employer: string, public formData: object, public headers: object) {
     }
 
-    async GetData(): Promise<object[]> {
+    // Pull data from website
+    async GetData(): Promise<string> {
 
-        let options = {
+        const options = {
             url: this.url,
             headers: this.headers,
             json: true
         }
 
-        const topTen = await request(options);
+        const response = await request(options);
 
-        return topTen;
+        return response;
+    }
+
+    // Scrape the data to fill the shifts array
+    ScrapeData(htmlIn: string): void {
+
+
     }
 }

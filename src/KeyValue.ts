@@ -1,5 +1,5 @@
-class KeyValue{
-    constructor(public key:string, public value:string){
+interface KeyValue{
+    key:string;
 
-    }
+    value:any;
 }

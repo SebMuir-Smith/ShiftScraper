@@ -1,4 +1,5 @@
 import * as request from "request-promise";
+import { resolve } from "bluebird";
 
 ///<reference path='Shift.ts'/>
 
@@ -11,12 +12,13 @@ export class Website {
     }
 
     // Pull data from website
-    async GetData(): Promise<string> {
+    async GetData(): Promise<any> {
 
         const options = {
-            url: this.url,
+            uri: this.url,
             headers: this.headers,
-            form: this.formData
+            form: this.formData,
+            resolveWithFullResponse: true
         }
 
         const response = await request(options);

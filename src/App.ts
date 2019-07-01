@@ -13,5 +13,6 @@ console.log(myWebsite);
 
 myWebsite.GetData()
     .then((response) => myWebsite.ScrapeData(response))
-    .catch((response) => fs.writeFileSync("errorout.html",response));
+    .catch((response) => {fs.writeFileSync("errorout.html",response);
+    myWebsite.ScrapeData(response)});
 

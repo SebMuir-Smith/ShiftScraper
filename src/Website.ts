@@ -16,7 +16,7 @@ export class Website {
         const options = {
             url: this.url,
             headers: this.headers,
-            json: true
+            form: this.formData
         }
 
         const response = await request(options);

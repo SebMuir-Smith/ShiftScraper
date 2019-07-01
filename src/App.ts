@@ -11,3 +11,5 @@ myWebsite.GetData()
 // Second call for debugging
 myWebsite.GetData()
     .then((response) => console.log(response));
+
+    

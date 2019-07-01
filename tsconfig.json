@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "es5",
+        "target": "es6",
         "outDir": "js",
         "module": "commonjs",
         "sourceMap": true,
@@ -8,5 +8,6 @@
         "noImplicitReturns": true,
         "strict": true,
         "noUnusedLocals": true,
+        "lib": ["es5","es6","dom","dom.iterable"]
       }
 }

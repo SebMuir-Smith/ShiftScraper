@@ -1,18 +1,17 @@
 ///<reference path='Website.ts'/>
 
 import { Website } from "./Website";
-
+const fs = require('fs');
 // For some reason ./ is not working here
-let obga:Website = require(process.cwd() + "/data/obgaHeader.json");
+let myWebsite:Website = require(process.cwd() + "/data/obgaHeader.json");
 
-console.log(obga);
+console.log(...'nice');
 
-let myWebsite: Website = new Website("https://threepointsix.azurewebsites.net/api/post", "Sample Employer",
-    [{ key: "Message", value: "nice" }, { key: "Authors", value: ["BigMemeDaddy"] }], [{ key: "Authors", value: ["BigMemeDaddy"] }]);
+myWebsite = new Website(myWebsite.url,myWebsite.employer,myWebsite.formData,myWebsite.headers);
+
+console.log(myWebsite);
 
 myWebsite.GetData()
-    //.then((response) => myWebsite.ScrapeData(response));
+    .then((response) => myWebsite.ScrapeData(response))
+    .catch((response) => fs.writeFileSync("errorout.html",response));
 
-// Second call for debugging
-myWebsite.GetData()
-    //.then((response) => console.log(response));

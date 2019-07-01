@@ -6,7 +6,7 @@ export class Website {
 
     shifts: Shift[] = [];
 
-    requestType: string = "GET";
+    requestType: string = "POST";
     constructor(public url: string, public employer: string, public formData: object, public headers: object) {
     }
 
@@ -26,7 +26,7 @@ export class Website {
 
     // Scrape the data to fill the shifts array
     ScrapeData(htmlIn: string): void {
-
+        console.log(htmlIn);
 
     }
 }

@@ -14,7 +14,7 @@ console.log(myWebsite);
 
 myWebsite.GetData()
     .then((response) => myWebsite.RedirectRequest(response)
-    .then((response) => {myWebsite.ScrapeData(response);
+    .then((response) => {myWebsite.ScrapeData(response.body);
         fs.writeFileSync("SuccessOut.html",response.body)}))
     .catch((response) => {fs.writeFileSync("errorout.html",response);
     myWebsite.ScrapeData(response)});

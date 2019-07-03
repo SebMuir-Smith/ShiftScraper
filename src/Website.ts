@@ -1,15 +1,14 @@
 import * as request from "request-promise";
-import { resolve } from "bluebird";
 import { IncomingMessage } from "http";
 
 ///<reference path='Shift.ts'/>
-
+///<reference path='Headers.ts'/>
 export class Website {
 
     shifts: Shift[] = [];
 
     requestType: string = "POST";
-    constructor(public url: string, public employer: string, public formData: object, public headers: object,
+    constructor(public url: string, public employer: string, public formData: object, public headers: Header,
         public redirectUrl:string, public redirectFormData: object) {
     }
 

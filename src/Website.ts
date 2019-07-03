@@ -9,7 +9,7 @@ export class Website {
 
     requestType: string = "POST";
     constructor(public url: string, public employer: string, public formData: object, public headers: Header,
-        public redirectUrl:string, public redirectFormData: object) {
+        public redirectUrl:string, public redirectFormData: object, public regex: object) {
     }
 
     // Pull data from website
@@ -44,8 +44,7 @@ export class Website {
         let cookieConstructionString = "";
         for (let i = 0; i < cookies.length; i++){
             cookieConstructionString += this.RemovePath(cookies[i]);
-
-        }
+       }
 
         this.headers.Cookie = cookieConstructionString;
 

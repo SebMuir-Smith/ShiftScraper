@@ -8,9 +8,37 @@ export class Website {
 
     shifts: Shift[] = [];
 
+    url:string;
+
+    employer:string;
+
+    formData:any;
+
+    headers:Header;
+
+    redirectUrl:string;
+
+    redirectFormData:any;
+
+    regex:RegexContainer;
+
     requestType: string = "POST";
-    constructor(public url: string, public employer: string, public formData: object, public headers: Header,
-        public redirectUrl:string, public redirectFormData: object, public regex:RegexContainer) {
+
+    constructor( objIn : { url: string,  employer: string,  formData: object,  headers: Header,
+     redirectUrl:string, redirectFormData: object, regex:RegexContainer}) {
+         this.url = objIn.url;
+
+         this.employer = objIn.employer;
+
+         this.formData = objIn.formData;
+
+         this.headers = objIn.headers;
+
+         this.redirectUrl = objIn.redirectUrl;
+
+         this.redirectFormData = objIn.redirectFormData;
+
+         this.regex = objIn.regex;
     }
 
     // Pull data from website

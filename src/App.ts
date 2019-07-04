@@ -7,9 +7,7 @@ let myWebsite:Website = require(process.cwd() + "/data/obgaHeader.json");
 
 console.log(...'nice');
 
-myWebsite = new Website(myWebsite.url,myWebsite.employer,
-    myWebsite.formData,myWebsite.headers,myWebsite.redirectUrl,myWebsite.redirectFormData,
-    myWebsite.regex);
+myWebsite = new Website(myWebsite);
 
 console.log(myWebsite);
 

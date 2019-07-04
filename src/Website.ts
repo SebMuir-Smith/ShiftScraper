@@ -25,9 +25,11 @@ export class Website {
 
     requestType: string = "POST";
 
+    redirectType:string;
+
     constructor(objIn: {
         url: string, employer: string, formData: object, headers: Header,
-        redirectUrl: string, redirectFormData: object, regex: RegexContainer
+        redirectUrl: string, redirectFormData: object, regex: RegexContainer, redirectType:string
     }) {
         this.url = objIn.url;
 
@@ -42,6 +44,8 @@ export class Website {
         this.redirectFormData = objIn.redirectFormData;
 
         this.regex = objIn.regex;
+
+        this.redirectType = objIn.redirectType;
     }
 
     // Pull data from website
@@ -85,7 +89,7 @@ export class Website {
     }
 
     // Continue redirection if a 302 is returned, by setting cookies
-    // then going to the redirected page
+    // then going to the next desired page in the json
     RedirectRequest(response: IncomingMessage): Promise<any> {
 
         const cookies: string[] = response.headers["set-cookie"] || [];
@@ -98,6 +102,7 @@ export class Website {
 
         this.url = this.redirectUrl;
         this.formData = this.redirectFormData;
+        this.requestType = this.redirectType;
 
         return this.GetData();
     }

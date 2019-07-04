@@ -1,7 +1,8 @@
 ///<reference path='Website.ts'/>
-
 import { Website } from "./Website";
 const fs = require('fs');
+
+
 // For some reason ./ is not working here
 const firstWebsiteData = require(process.cwd() + "/data/obgaHeader.json");
 

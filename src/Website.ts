@@ -102,12 +102,9 @@ export class Website {
         return this.GetData();
     }
 
+    // Removes the "path=;" part of the given cookie 
     RemovePath(cookie: string): string {
         return cookie.split("; ")[0]
     }
 
-    GetPatterns(): string[] {
-
-        return []
-    }
 }

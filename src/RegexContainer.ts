@@ -1,6 +1,6 @@
 ///<reference path='Shift.ts'/>
 
-class RegexScraper extends Shift{
+class RegexContainer extends Shift{
      start:string;
 
      end:string;

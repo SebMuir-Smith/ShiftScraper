@@ -1,0 +1,24 @@
+{
+  "name": "shiftscraper",
+  "version": "1.0.0",
+  "description": "availiable shifts web scraper",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SebMuir-Smith/ShiftScraper.git"
+  },
+  "author": "sebastian muir-smith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SebMuir-Smith/ShiftScraper/issues"
+  },
+  "homepage": "https://github.com/SebMuir-Smith/ShiftScraper#readme",
+  "dependencies": {
+    "@types/request-promise": "^4.1.44",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}

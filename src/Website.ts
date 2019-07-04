@@ -63,6 +63,21 @@ export class Website {
     ScrapeData(htmlIn: string): void {
         console.log(htmlIn);
 
+        // Scrape all the data, the (|| []) assigns an empty array if no shifts found
+        let dates = new RegExp(this.regex.date, "g").exec(htmlIn) || [];
+        let startTimes = new RegExp(this.regex.start, "g").exec(htmlIn) || [];
+        let endTimes = new RegExp(this.regex.end, "g").exec(htmlIn) || [];
+        let locations = new RegExp(this.regex.location, "g").exec(htmlIn) || [];
+        let positions = new RegExp(this.regex.position, "g").exec(htmlIn) || [];
+        let events = new RegExp(this.regex.event, "g").exec(htmlIn)|| [];
+
+        // This assumes that number of dates scrapes = number of shifts = length of all other arrays
+        // Iterator increments two values at a time as due to grouping each match yields two strings
+        for (let shiftNumber:number = 0; shiftNumber < dates.length; shiftNumber = shiftNumber + 2){
+            this.shifts.push(new Shift(dates[shiftNumber], startTimes[shiftNumber], endTimes[shiftNumber],
+                locations[shiftNumber], positions[shiftNumber], events[shiftNumber]))
+        }
+
     }
 
     // Continue redirection if a 302 is returned, by setting cookies

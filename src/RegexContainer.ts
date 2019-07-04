@@ -1,14 +1,18 @@
-///<reference path='Shift.ts'/>
 
-class RegexContainer extends Shift{
+class RegexContainer{
      start:string;
 
      end:string;
 
      date:string;
 
+     location:string; 
+     
+     position:string; 
+     
+     event:string;
+
      constructor(objIn : {start:string, end:string, date:string, location:string, position:string, event:string}){
-         super();
 
          this.start = objIn.start;
 

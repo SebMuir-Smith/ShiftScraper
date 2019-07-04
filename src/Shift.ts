@@ -9,5 +9,7 @@ class Shift {
 
     event:string = "";
 
-    constructor(){};
+    constructor(date:string, startTime:string, endTime:string, location:string, position:string, event:string){
+        
+    };
 }

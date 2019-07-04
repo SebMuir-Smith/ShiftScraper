@@ -53,6 +53,7 @@ export class Website {
             followRedirect: true,
             simple: false
         }
+        
 
         const response = await request(options);
 
@@ -86,7 +87,7 @@ export class Website {
         const cookies: string[] = response.headers["set-cookie"] || [];
         let cookieConstructionString = "";
         for (let i = 0; i < cookies.length; i++) {
-            cookieConstructionString += this.RemovePath(cookies[i]);
+            cookieConstructionString += this.RemovePath(cookies[i]) + "; ";
         }
 
         // For the first request, there won't be any cookies yet

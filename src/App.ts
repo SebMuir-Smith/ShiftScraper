@@ -10,7 +10,7 @@ let firstWebsite = new Website(firstWebsiteData);
 
 // Get data and scrape it
 firstWebsite.GetData()
-    .then((response) => firstWebsite.RedirectRequest(response)
+    .then((response) => firstWebsite.RedirectRequest(response, 0)
         .then((response) => {
             firstWebsite.ScrapeData(response.body);
             fs.writeFileSync("SuccessOut.html", response.body)
@@ -27,10 +27,9 @@ let secondWebsite = new Website(secondWebsiteData);
 
 // Get data and scrape it
 secondWebsite.GetData()
-    .then((response) => secondWebsite.RedirectRequest(response)
+    .then((response) => secondWebsite.RedirectRequest(response, 0)
         .then((response) => {
-            secondWebsite.ScrapeData(response.body);
-            fs.writeFileSync("SuccessOut.html", response.body)
+            secondWebsite.RedirectRequest(response, 1).then((res) => { secondWebsite.ScrapeData(res) })
         }))
     .catch((response) => {
         fs.writeFileSync("errorout.html", response);

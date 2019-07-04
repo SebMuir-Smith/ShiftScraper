@@ -1,6 +1,7 @@
 import * as request from "request-promise";
 import { IncomingMessage } from "http";
 import { Shift } from "./Shift";
+import { Redirect } from "./Redirect";
 
 ///<reference path='Shift.ts'/>
 ///<reference path='Headers.ts'/>
@@ -17,19 +18,15 @@ export class Website {
 
     headers: Header;
 
-    redirectUrl: string;
-
-    redirectFormData: any;
-
     regex: RegexContainer;
 
     requestType: string = "POST";
 
-    redirectType:string;
+    redirects:Redirect[];
 
     constructor(objIn: {
         url: string, employer: string, formData: object, headers: Header,
-        redirectUrl: string, redirectFormData: object, regex: RegexContainer, redirectType:string
+        redirects:Redirect[], regex: RegexContainer
     }) {
         this.url = objIn.url;
 
@@ -39,13 +36,9 @@ export class Website {
 
         this.headers = objIn.headers;
 
-        this.redirectUrl = objIn.redirectUrl;
-
-        this.redirectFormData = objIn.redirectFormData;
-
         this.regex = objIn.regex;
 
-        this.redirectType = objIn.redirectType;
+        this.redirects = objIn.redirects;
     }
 
     // Pull data from website
@@ -88,7 +81,7 @@ export class Website {
 
     // Continue redirection if a 302 is returned, by setting cookies
     // then going to the next desired page in the json
-    RedirectRequest(response: IncomingMessage): Promise<any> {
+    RedirectRequest(response: IncomingMessage, redirectIndex:number): Promise<any> {
 
         const cookies: string[] = response.headers["set-cookie"] || [];
         let cookieConstructionString = "";
@@ -96,11 +89,15 @@ export class Website {
             cookieConstructionString += this.RemovePath(cookies[i]);
         }
 
-        this.headers.Cookie = cookieConstructionString;
+        // For the first request, there won't be any cookies yet
+        if (redirectIndex == 0){
+            this.headers.Cookie = "";
+        }
+        this.headers.Cookie += cookieConstructionString;
 
-        this.url = this.redirectUrl;
-        this.formData = this.redirectFormData;
-        this.requestType = this.redirectType;
+        this.url = this.redirects[redirectIndex].redirectUrl;
+        this.formData = this.redirects[redirectIndex].redirectFormData;
+        this.requestType = this.redirects[redirectIndex].redirectMethod;
 
         return this.GetData();
     }

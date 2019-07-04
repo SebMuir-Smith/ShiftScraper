@@ -1,6 +1,6 @@
 import * as request from "request-promise";
 import { IncomingMessage } from "http";
-import {Shift} from "./Shift";
+import { Shift } from "./Shift";
 
 ///<reference path='Shift.ts'/>
 ///<reference path='Headers.ts'/>
@@ -9,37 +9,39 @@ export class Website {
 
     shifts: Shift[] = [];
 
-    url:string;
+    url: string;
 
-    employer:string;
+    employer: string;
 
-    formData:any;
+    formData: any;
 
-    headers:Header;
+    headers: Header;
 
-    redirectUrl:string;
+    redirectUrl: string;
 
-    redirectFormData:any;
+    redirectFormData: any;
 
-    regex:RegexContainer;
+    regex: RegexContainer;
 
     requestType: string = "POST";
 
-    constructor( objIn : { url: string,  employer: string,  formData: object,  headers: Header,
-     redirectUrl:string, redirectFormData: object, regex:RegexContainer}) {
-         this.url = objIn.url;
+    constructor(objIn: {
+        url: string, employer: string, formData: object, headers: Header,
+        redirectUrl: string, redirectFormData: object, regex: RegexContainer
+    }) {
+        this.url = objIn.url;
 
-         this.employer = objIn.employer;
+        this.employer = objIn.employer;
 
-         this.formData = objIn.formData;
+        this.formData = objIn.formData;
 
-         this.headers = objIn.headers;
+        this.headers = objIn.headers;
 
-         this.redirectUrl = objIn.redirectUrl;
+        this.redirectUrl = objIn.redirectUrl;
 
-         this.redirectFormData = objIn.redirectFormData;
+        this.redirectFormData = objIn.redirectFormData;
 
-         this.regex = objIn.regex;
+        this.regex = objIn.regex;
     }
 
     // Pull data from website
@@ -51,8 +53,8 @@ export class Website {
             headers: this.headers,
             form: this.formData,
             resolveWithFullResponse: true,
-            followRedirect:true,
-            simple:false
+            followRedirect: true,
+            simple: false
         }
 
         const response = await request(options);
@@ -70,11 +72,12 @@ export class Website {
         let endTimes = new RegExp(this.regex.end, "g").exec(htmlIn) || [];
         let locations = new RegExp(this.regex.location, "g").exec(htmlIn) || [];
         let positions = new RegExp(this.regex.position, "g").exec(htmlIn) || [];
-        let events = new RegExp(this.regex.event, "g").exec(htmlIn)|| [];
+        let events = new RegExp(this.regex.event, "g").exec(htmlIn) || [];
 
+        // Convert the scraped data into a Shift object for each datum
         // This assumes that number of dates scrapes = number of shifts = length of all other arrays
         // Iterator increments two values at a time as due to grouping each match yields two strings
-        for (let shiftNumber:number = 1; shiftNumber < dates.length; shiftNumber = shiftNumber + 2){
+        for (let shiftNumber: number = 1; shiftNumber < dates.length; shiftNumber = shiftNumber + 2) {
             this.shifts.push(new Shift(dates[shiftNumber], startTimes[shiftNumber], endTimes[shiftNumber],
                 locations[shiftNumber], positions[shiftNumber], events[shiftNumber]))
         }
@@ -83,13 +86,13 @@ export class Website {
 
     // Continue redirection if a 302 is returned, by setting cookies
     // then going to the redirected page
-    RedirectRequest(response:IncomingMessage):Promise<any>{
+    RedirectRequest(response: IncomingMessage): Promise<any> {
 
-        const cookies:string[] = response.headers["set-cookie"] || [];
+        const cookies: string[] = response.headers["set-cookie"] || [];
         let cookieConstructionString = "";
-        for (let i = 0; i < cookies.length; i++){
+        for (let i = 0; i < cookies.length; i++) {
             cookieConstructionString += this.RemovePath(cookies[i]);
-       }
+        }
 
         this.headers.Cookie = cookieConstructionString;
 
@@ -99,11 +102,11 @@ export class Website {
         return this.GetData();
     }
 
-    RemovePath(cookie:string):string{
+    RemovePath(cookie: string): string {
         return cookie.split("; ")[0]
     }
 
-    GetPatterns():string[]{
+    GetPatterns(): string[] {
 
         return []
     }

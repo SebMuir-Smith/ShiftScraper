@@ -1,3 +1,3 @@
 interface Header {
-    Cookie:string
+    Cookie: string
 }

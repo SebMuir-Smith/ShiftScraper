@@ -1,29 +1,29 @@
 
-class RegexContainer{
-     start:string;
+class RegexContainer {
+    start: string;
 
-     end:string;
+    end: string;
 
-     date:string;
+    date: string;
 
-     location:string; 
-     
-     position:string; 
-     
-     event:string;
+    location: string;
 
-     constructor(objIn : {start:string, end:string, date:string, location:string, position:string, event:string}){
+    position: string;
 
-         this.start = objIn.start;
+    event: string;
 
-         this.end = objIn.end;
+    constructor(objIn: { start: string, end: string, date: string, location: string, position: string, event: string }) {
 
-         this.date = objIn.date;
+        this.start = objIn.start;
 
-         this.location = objIn.location;
+        this.end = objIn.end;
 
-         this.position = objIn.position;
+        this.date = objIn.date;
 
-         this.event = objIn.event;
-     }
+        this.location = objIn.location;
+
+        this.position = objIn.position;
+
+        this.event = objIn.event;
+    }
 }

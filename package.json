@@ -2,9 +2,9 @@
   "name": "shiftscraper",
   "version": "1.0.0",
   "description": "availiable shifts web scraper",
-  "main": "index.js",
+  "main": "index.js",  
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "tsc && node js/src/App.js"
   },
   "repository": {
     "type": "git",

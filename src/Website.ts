@@ -1,5 +1,6 @@
 import * as request from "request-promise";
 import { IncomingMessage } from "http";
+import {Shift} from "./Shift";
 
 ///<reference path='Shift.ts'/>
 ///<reference path='Headers.ts'/>

@@ -68,8 +68,6 @@ export class Website {
 
     // Scrape the data to fill the shifts array
     ScrapeData(htmlIn: string): void {
-        console.log(htmlIn);
-
         // Scrape all the data, the (|| []) assigns an empty array if no shifts found
         let dates = new RegExp(this.regex.date, "g").exec(htmlIn) || [];
         let startTimes = new RegExp(this.regex.start, "g").exec(htmlIn) || [];

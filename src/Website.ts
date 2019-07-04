@@ -74,7 +74,7 @@ export class Website {
 
         // This assumes that number of dates scrapes = number of shifts = length of all other arrays
         // Iterator increments two values at a time as due to grouping each match yields two strings
-        for (let shiftNumber:number = 0; shiftNumber < dates.length; shiftNumber = shiftNumber + 2){
+        for (let shiftNumber:number = 1; shiftNumber < dates.length; shiftNumber = shiftNumber + 2){
             this.shifts.push(new Shift(dates[shiftNumber], startTimes[shiftNumber], endTimes[shiftNumber],
                 locations[shiftNumber], positions[shiftNumber], events[shiftNumber]))
         }

@@ -34,6 +34,13 @@ export class Website {
     ScrapeData(htmlIn: string): void {
         console.log(htmlIn);
 
+        let regex:RegExp;
+        patterns:string[] = this.GetPatterns();
+        for (let i = 0; i < Object.keys(this.regex).length; i++){
+            regex = new RegExp(this.regex[i])
+
+        }
+
     }
 
     // Continue redirection if a 302 is returned, by setting cookies
@@ -56,5 +63,19 @@ export class Website {
 
     RemovePath(cookie:string):string{
         return cookie.split("; ")[0]
+    }
+
+    GetPatterns():string[]{
+        let patterns:RegExp[] = [];
+        
+        let keys:string[] = Object.keys(this.regex);
+
+        let regex:object = this.regex;
+        for (let i = 0; i < keys.length; i++){
+            patterns.push(new RegExp(this.regex.(keys[i])), "g");
+
+        }
+
+        return []
     }
 }

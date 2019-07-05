@@ -31,7 +31,7 @@ let secondWebsite = new Website(secondWebsiteData,secondWebsiteForms);
 secondWebsite.GetData()
     .then((response) => secondWebsite.RedirectRequest(response, 1)
         .then((response) => {
-            secondWebsite.RedirectRequest(response, 2).then((res) => { secondWebsite.ScrapeData(res) })
+            secondWebsite.RedirectRequest(response, 2).then((res) => { secondWebsite.ScrapeData(res.body) })
         }))
     .catch((response) => {
         fs.writeFileSync("errorout.html", response);

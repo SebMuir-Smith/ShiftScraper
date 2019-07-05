@@ -28,11 +28,11 @@
         }
     ],
     "regex": {
-        "date": "id=RowDate[0-9]+ value='([^']*)'",
-        "start": "id=RowST[0-9]+>([^<]*)<",
-        "end": "id=RowFT[0-9]+>([^<]*)<",
-        "location": "id=RowLoc[0-9]+>([^<]*)<",
+        "date": "class=\"shift-time\" data-id=\"[0-9]*\" data-title=\"[A-Za-z]* ([^\"]*)\">",
+        "start": "class=\"shift-time\" data-id=\"[0-9]*\" data-title=\"[A-Za-z]* [^\"]*\">([^<]*)<",
+        "end": "class=\"shift-time\" data-id=\"[0-9]*\" data-title=\"[A-Za-z]* [^\"]*\">[^<]*<text>-<\/text>([^<]*)<",
+        "location": "<div class=\"extra-info hidden print-hide\">\n(.*?)  ",
         "position": "id=RowPosition[0-9]+>([^<]*)<",
-        "event": "id=RowEvent[0-9]+>([^<]*)<"
+        "event": "<div class=\"extra-info hidden print-hide\">\n.*?  [^A-Z]*(.*?)  "
     }
 }

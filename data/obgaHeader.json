@@ -1,0 +1,35 @@
+{
+    "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Cache-Control": "max-age=0",
+        "Connection": "keep-alive",
+        "Content-Length": "45",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "DNT": "1",
+        "Host": "obgastaffing.inzenius.com",
+        "Origin": "https://obgastaffing.inzenius.com",
+        "Referer": "https://obgastaffing.inzenius.com/",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Sebastian Muir-Smith's automatic shift checker",
+        "Cookie": ""
+    },
+    "employer": "obga",
+    "redirects": [
+        {"redirectUrl":"https://obgastaffing.inzenius.com/login.asp",
+        "redirectMethod":"POST"},
+        {
+            "redirectUrl": "https://obgastaffing.inzenius.com/viewRoster.asp?datefrom=1/07/2019&dateto=1/07/2020&alert=",
+            "redirectMethod": "POST"
+        }
+    ],
+    "regex": {
+        "date": "id=RowDate[0-9]+ value='([^']*)'",
+        "start": "id=RowST[0-9]+>([^<]*)<",
+        "end": "id=RowFT[0-9]+>([^<]*)<",
+        "location": "id=RowLoc[0-9]+>([^<]*)<",
+        "position": "id=RowPosition[0-9]+>([^<]*)<",
+        "event": "id=RowEvent[0-9]+>([^<]*)<"
+    }
+}

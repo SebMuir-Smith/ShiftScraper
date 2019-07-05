@@ -20,25 +20,32 @@ export class Website {
 
     regex: RegexContainer;
 
-    requestType: string = "POST";
+    requestType: string;
 
     redirects:Redirect[];
 
     constructor(objIn: {
-        url: string, employer: string, formData: object, headers: Header,
+        headers: Header, employer:string,
         redirects:Redirect[], regex: RegexContainer
-    }) {
-        this.url = objIn.url;
+    }, formDataIn : object[]) {
 
         this.employer = objIn.employer;
-
-        this.formData = objIn.formData;
 
         this.headers = objIn.headers;
 
         this.regex = objIn.regex;
 
         this.redirects = objIn.redirects;
+
+        // Add the sensitive form data from a separate file
+        for (let i = 0; i < formDataIn.length; i++){
+            this.redirects[i].redirectFormData = formDataIn[i];
+        }
+
+        // Set the current url, formData and request method to the first of the redirect's
+        this.url = this.redirects[0].redirectUrl;
+        this.formData = this.redirects[0].redirectFormData;
+        this.requestType = this.redirects[0].redirectMethod;
     }
 
     // Pull data from website
@@ -91,9 +98,10 @@ export class Website {
         }
 
         // For the first request, there won't be any cookies yet
-        if (redirectIndex == 0){
+        if (this.headers.Cookie == null){
             this.headers.Cookie = "";
         }
+        
         this.headers.Cookie += cookieConstructionString;
 
         this.url = this.redirects[redirectIndex].redirectUrl;

@@ -1,0 +1,38 @@
+{
+    "headers": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
+        "Accept-Encoding": "gzip, deflate",
+        "Accept-Language": "en-US,en;q=0.9",
+        "Cache-Control": "max-age=0",
+        "Connection": "keep-alive",
+        "DNT": "1",
+        "Host": "timetarget.gctc.com.au",
+        "Origin": "http://timetarget.gctc.com.au",
+        "Referer": "http://timetarget.gctc.com.au/",
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Sebastian Muir-Smith's automatic shift checker"
+    },
+    "employer": "gctc",
+    "redirects": [
+        {
+            "redirectUrl": "http://timetarget.gctc.com.au/Account/Logon?ReturnUrl=%2F",
+            "redirectMethod": "GET"
+        },
+        {
+            "redirectUrl": "http://timetarget.gctc.com.au/Account/Logon?ReturnUrl=%2F",
+            "redirectMethod": "POST"
+        },
+        {
+            "redirectUrl": "http://timetarget.gctc.com.au/Roster",
+            "redirectMethod": "GET"
+        }
+    ],
+    "regex": {
+        "date": "id=RowDate[0-9]+ value='([^']*)'",
+        "start": "id=RowST[0-9]+>([^<]*)<",
+        "end": "id=RowFT[0-9]+>([^<]*)<",
+        "location": "id=RowLoc[0-9]+>([^<]*)<",
+        "position": "id=RowPosition[0-9]+>([^<]*)<",
+        "event": "id=RowEvent[0-9]+>([^<]*)<"
+    }
+}

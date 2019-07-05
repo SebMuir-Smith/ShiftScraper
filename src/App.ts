@@ -2,15 +2,16 @@
 import { Website } from "./Website";
 const fs = require('fs');
 
-/*
+
 // For some reason ./ is not working here
 const firstWebsiteData = require(process.cwd() + "/data/obgaHeader.json");
+const firstWebsiteForms = require(process.cwd() + "/data/obgaFormData.json");
 
-let firstWebsite = new Website(firstWebsiteData);
+let firstWebsite = new Website(firstWebsiteData, firstWebsiteForms);
 
 // Get data and scrape it
 firstWebsite.GetData()
-    .then((response) => firstWebsite.RedirectRequest(response, 0)
+    .then((response) => firstWebsite.RedirectRequest(response, 1)
         .then((response) => {
             firstWebsite.ScrapeData(response.body);
             console.log(firstWebsite.shifts);
@@ -19,18 +20,18 @@ firstWebsite.GetData()
         fs.writeFileSync("errorout.html", response);
         firstWebsite.ScrapeData(response)
     });
-*/
+
 
 
 const secondWebsiteData = require(process.cwd() + "/data/gctcHeader.json");
-
-let secondWebsite = new Website(secondWebsiteData);
+const secondWebsiteForms = require(process.cwd() + "/data/gctcFormData.json");
+let secondWebsite = new Website(secondWebsiteData,secondWebsiteForms);
 
 // Get data and scrape it
 secondWebsite.GetData()
-    .then((response) => secondWebsite.RedirectRequest(response, 0)
+    .then((response) => secondWebsite.RedirectRequest(response, 1)
         .then((response) => {
-            secondWebsite.RedirectRequest(response, 1).then((res) => { secondWebsite.ScrapeData(res) })
+            secondWebsite.RedirectRequest(response, 2).then((res) => { secondWebsite.ScrapeData(res) })
         }))
     .catch((response) => {
         fs.writeFileSync("errorout.html", response);

@@ -25,6 +25,11 @@
         {
             "redirectUrl": "http://timetarget.gctc.com.au/Roster",
             "redirectMethod": "GET"
+        },
+        {
+            "redirectUrl": "http://timetarget.gctc.com.au/Roster",
+            "redirectMethod": "GET",
+            "nextMonth": true
         }
     ],
     "regex": {

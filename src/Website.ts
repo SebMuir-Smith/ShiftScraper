@@ -105,6 +105,21 @@ export class Website {
         this.headers.Cookie += cookieConstructionString;
 
         this.url = this.redirects[redirectIndex].redirectUrl;
+
+        // Redirect to next month's shift page instead if desired
+        if (this.redirects[redirectIndex].nextMonth){
+            const today:Date = new Date();
+
+            // Handle if the next month is january of next year
+            if (today.getMonth() != 11){
+                this.url += `?Month=${today.getMonth() + 2}&Year=${today.getFullYear()}&vm=1`;
+            }
+            else{
+                this.url += `?Month=0&Year=${today.getFullYear() + 1}&vm=1`;
+            }
+            
+        }
+
         this.formData = this.redirects[redirectIndex].redirectFormData;
         this.requestType = this.redirects[redirectIndex].redirectMethod;
 

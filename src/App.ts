@@ -25,15 +25,20 @@ firstWebsite.GetData()
 
 const secondWebsiteData = require(process.cwd() + "/data/gctcHeader.json");
 const secondWebsiteForms = require(process.cwd() + "/data/gctcFormData.json");
-let secondWebsite = new Website(secondWebsiteData,secondWebsiteForms);
+let secondWebsite = new Website(secondWebsiteData, secondWebsiteForms);
 
-// Get data and scrape it
+// Get and scrape the data from the second website
 secondWebsite.GetData()
-    .then((response) => secondWebsite.RedirectRequest(response, 1)
-        .then((response) => {
-            secondWebsite.RedirectRequest(response, 2).then((res) => { secondWebsite.ScrapeData(res.body) })
-        }))
-    .catch((response) => {
-        fs.writeFileSync("errorout.html", response);
-    });
-
+    .then((res) => 
+    secondWebsite.RedirectRequest(res, 1)
+    .then((res) => 
+    secondWebsite.RedirectRequest(res, 2)
+    .then((res) => {
+    secondWebsite.ScrapeData(res.body);
+    secondWebsite.RedirectRequest(res, 3)
+    .then((res) =>  
+    secondWebsite.ScrapeData(res.body))
+    })))
+    .catch((res) => 
+    fs.writeFileSync("errorout.html", res)
+    );

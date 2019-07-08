@@ -94,7 +94,7 @@ export class Website {
         const cookies: string[] = response.headers["set-cookie"] || [];
         let cookieConstructionString = "";
         for (let i = 0; i < cookies.length; i++) {
-            cookieConstructionString += this.RemovePath(cookies[i]) + "; ";
+            cookieConstructionString += Website.RemovePath(cookies[i]) + "; ";
         }
 
         // For the first request, there won't be any cookies yet
@@ -112,7 +112,7 @@ export class Website {
     }
 
     // Removes the "path=;" part of the given cookie 
-    RemovePath(cookie: string): string {
+    static RemovePath(cookie: string): string {
         return cookie.split("; ")[0]
     }
 

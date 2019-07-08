@@ -35,6 +35,5 @@ secondWebsite.GetData()
         }))
     .catch((response) => {
         fs.writeFileSync("errorout.html", response);
-        secondWebsite.ScrapeData(response)
     });
 

@@ -31,8 +31,8 @@
         "date": "class=\"shift-time\" data-id=\"[0-9]*\" data-title=\"[A-Za-z]* ([^\"]*)\">",
         "start": "class=\"shift-time\" data-id=\"[0-9]*\" data-title=\"[A-Za-z]* [^\"]*\">([^<]*)<",
         "end": "class=\"shift-time\" data-id=\"[0-9]*\" data-title=\"[A-Za-z]* [^\"]*\">[^<]*<text>-<\/text>([^<]*)<",
-        "location": "<div class=\"extra-info hidden print-hide\">\n(.*?)  ",
-        "position": "id=RowPosition[0-9]+>([^<]*)<",
-        "event": "<div class=\"extra-info hidden print-hide\">\n.*?  [^A-Z]*(.*?)  "
+        "location": "<div class=\"extra-info hidden print-hide\">\r\n([^<]*?)  ",
+        "position": "<p class=roster-item-p>[^<]*<[^<]*<[^<]*<[^<]*<[^<]*<[^<]*<[^<]*<[^>]*>([^<]*)<",
+        "event": "<div class=\"extra-info hidden print-hide\">\r\n[^<]*?  [^A-Z]*([^<]*?)  "
     }
 }

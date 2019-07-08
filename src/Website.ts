@@ -42,7 +42,7 @@ export class Website {
             this.redirects[i].redirectFormData = formDataIn[i];
         }
 
-        // Set the current url, formData and request method to the first of the redirect's
+        // Set the current url, formData and request method to the first of the redirects
         this.url = this.redirects[0].redirectUrl;
         this.formData = this.redirects[0].redirectFormData;
         this.requestType = this.redirects[0].redirectMethod;
